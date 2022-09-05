@@ -1,13 +1,45 @@
 spring:
-  h2:
-    console:
-      enabled: true
-  profiles:
-    active: local
   datasource:
+    url : jdbc:mysql://localhost:3306/test
+    username : root
+    password : root
+    driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
-      jdbc-url: jdbc:h2:./data/testdb
-      # 또는 jdbc:h2:tcp://localhost:9092/./data/testdb
-      driver-class-name: org.h2.Driver
-      username: sa
-      password:
+      maximum-pool-size: 30
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+    jpa:
+      database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+      show-sql: true
+      properties:
+        hibernate:
+          format_sql: true
+
+      hibernate:
+        ddl-auto: update
+        naming:
+          implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      generate-ddl: true
+      open-in-view: false
+
+
+#  h2:
+#    console:
+#      enabled: true
+#  profiles:
+#    active: local
+#  datasource:
+#    hikari:
+#      jdbc-url: jdbc:h2:./data/testdb
+#      # 또는 jdbc:h2:tcp://localhost:9092/./data/testdb
+#      driver-class-name: org.h2.Driver
+#      username: sa
+#      password:
+
+
+jwt:
+  secret: ${JWT_SECRET}
