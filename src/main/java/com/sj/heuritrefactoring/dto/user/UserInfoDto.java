@@ -14,7 +14,6 @@ public class UserInfoDto {
     private String socialId;
     private String imgURL;
     private String refreshToken;
-    private String deviceToken;
     private SocialType socialType;
 
     public UserInfoDto(String username, String email, String socialId, SocialType socialType, String imgURL) {
@@ -26,7 +25,7 @@ public class UserInfoDto {
     }
 
     public User toEntity(){
-        User user = new User(this.username, this.email, this.socialId, this.imgURL, this.refreshToken, this.deviceToken, this.socialType);
+        User user = new User(this.username, this.email, this.socialId, this.imgURL, this.refreshToken, this.socialType);
         return user;
     }
 }

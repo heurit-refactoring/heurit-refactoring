@@ -26,14 +26,14 @@ public class User {
     @Column(name = "email", nullable = true)
     private String email;
 
-    @Column(name = "socialId",nullable = false)
+    @Column(name = "socialId", nullable = false)
     private String socialId; // 카카오 아이디 User PK값
 
     @Column(name = "socialType", nullable = false)
     @Enumerated(EnumType.STRING)
     private SocialType socialType; // 애플로그인, 카카오 로그인 구분
 
-    @Column(name = "imgUrl",nullable = true)
+    @Column(name = "imgUrl", nullable = true)
     private String imgUrl; // 프로필 사진
 
     @Column(name = "refreshToken", nullable = false)
@@ -42,7 +42,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     List<Worry> worryList = new ArrayList<>();
 
-    public User(String username, String email, String socialId, String imgUrl, String refreshToken, String deviceToken, SocialType socialType) {
+    public User(String username, String email, String socialId, String imgUrl, String refreshToken, SocialType socialType) {
         this.username = username;
         this.email = email;
         this.socialId = socialId;

@@ -27,9 +27,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT u.refreshToken FROM User u WHERE u.socialId = ?1 AND u.socialType = ?2")
     String findRefreshTokenBySocialIdAndSocialType(String socialId, SocialType socialType);
 
-    @Modifying(clearAutomatically = true)
-    @Query("UPDATE User u SET u.deviceToken = ?1 WHERE u.userId = ?2")
-    void updateDeviceTokenByUserId(String deviceToken, Long userId);
+//    @Modifying(clearAutomatically = true)
+//    @Query("UPDATE User u SET u.deviceToken = ?1 WHERE u.userId = ?2")
+//    void updateDeviceTokenByUserId(String deviceToken, Long userId);
 
     @Modifying(clearAutomatically = true)
     @Query("UPDATE User u SET u.refreshToken = ?1 WHERE u.socialId = ?2 AND u.socialType = ?3")

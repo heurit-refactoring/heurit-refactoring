@@ -23,9 +23,9 @@ import java.util.Objects;
 @Component
 public class JwtUtil {
 
-    private final int accessTokenExpMin = 3600; // 30 min
-    private final int refreshTokenExpMin = 604800; // 7 day
-    private Date now = new Date();
+    private final int ACCESS_TOKEN_EXP_MIN = 3600; // 30 min
+    private final int REFRESH_TOKEN_EXP_MIN = 604800; // 7 day
+    private final Date NOW = new Date();
 
     @Value("${jwt.secret}")
     private String secret;
@@ -41,12 +41,10 @@ public class JwtUtil {
     public TokenDto createToken(UserInfoDto userInfoDto) {
         // createJws: JWT를 Signature로 token을 만듦.
 
-        String accessToken = createJws(accessTokenExpMin, userInfoDto);
-        String refreshToken = createJws(refreshTokenExpMin, null);
+        String accessToken = createJws(ACCESS_TOKEN_EXP_MIN, userInfoDto);
+        String refreshToken = createJws(REFRESH_TOKEN_EXP_MIN, null);
 
-        TokenDto tokens = new TokenDto(accessToken, refreshToken);
-
-        return tokens;
+        return new TokenDto(accessToken, refreshToken);
     }
 
     private String createJws(Integer expMin, UserInfoDto userInfoDto) {
@@ -58,11 +56,11 @@ public class JwtUtil {
         //Body(Claims)
         Map<String, Object> claims = new HashMap<>();
         claims.put("iss", "worryrecord");
-        claims.put("issueAt", now);
+        claims.put("issueAt", NOW);
         claims.put("exp", new Date(System.currentTimeMillis() + 1000 * 60 * expMin));
 
         // TODO:: null 처리 코드 확인
-        if(Objects.isNull(userInfoDto))  {
+        if(userInfoDto != null)  {
             claims.put("socialId", userInfoDto.getSocialId());
             claims.put("socialType", userInfoDto.getSocialType().toString());
             claims.put("username", userInfoDto.getUsername());
