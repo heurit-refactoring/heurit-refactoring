@@ -4,9 +4,7 @@ import com.sj.heuritrefactoring.dto.jwt.TokenDto;
 import com.sj.heuritrefactoring.dto.user.UserInfoDto;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-
 import io.jsonwebtoken.security.Keys;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -19,7 +17,6 @@ import java.util.Map;
 import java.util.Objects;
 
 @Slf4j
-@RequiredArgsConstructor
 @Component
 public class JwtUtil {
 
@@ -44,7 +41,7 @@ public class JwtUtil {
         String accessToken = createJws(ACCESS_TOKEN_EXP_MIN, userInfoDto);
         String refreshToken = createJws(REFRESH_TOKEN_EXP_MIN, null);
 
-        return new TokenDto(accessToken, refreshToken);
+        return new TokenDto(accessToken, refreshToken); // 생성자로 객체를 만들기 때문에 @Setter 제거했습니다.
     }
 
     private String createJws(Integer expMin, UserInfoDto userInfoDto) {
@@ -60,7 +57,7 @@ public class JwtUtil {
         claims.put("exp", new Date(System.currentTimeMillis() + 1000 * 60 * expMin));
 
         // TODO:: null 처리 코드 확인
-        if(userInfoDto != null)  {
+        if(Objects.nonNull(userInfoDto))  {
             claims.put("socialId", userInfoDto.getSocialId());
             claims.put("socialType", userInfoDto.getSocialType().toString());
             claims.put("username", userInfoDto.getUsername());
