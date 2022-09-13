@@ -1,17 +1,14 @@
 package com.sj.heuritrefactoring.dto.user;
 
 import com.sj.heuritrefactoring.domain.user.SocialType;
-import com.sj.heuritrefactoring.domain.worry.Worry;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @NoArgsConstructor
-@Table(name = "USER")
+@Table(name = "H_USER")
 @Entity
 public class User {
 
@@ -38,9 +35,6 @@ public class User {
 
     @Column(name = "refreshToken", nullable = false)
     private String refreshToken;
-
-    @OneToMany(mappedBy = "user")
-    List<Worry> worryList = new ArrayList<>();
 
     public User(String username, String email, String socialId, String imgUrl, String refreshToken, SocialType socialType) {
         this.username = username;

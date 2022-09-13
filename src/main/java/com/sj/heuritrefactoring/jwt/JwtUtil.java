@@ -22,7 +22,6 @@ public class JwtUtil {
 
     private final int ACCESS_TOKEN_EXP_MIN = 3600; // 30 min
     private final int REFRESH_TOKEN_EXP_MIN = 604800; // 7 day
-    private final Date NOW = new Date();
 
     @Value("${jwt.secret}")
     private String secret;
@@ -45,11 +44,13 @@ public class JwtUtil {
     }
 
     private String createJws(Integer expMin, UserInfoDto userInfoDto) {
+
+        Date NOW = new Date(); // 메서드를 호출할 때의 시간을 생성해야 정확한 시간이다. -> private static final NOW = new Date()의 경우 클래스를 로더할 때의 시간이므로 적절하지 않다.
+
         //Header
         Map<String, Object> header = new HashMap<>();
         header.put("typ", "jwt");
         header.put("alg", "HS256");
-
         //Body(Claims)
         Map<String, Object> claims = new HashMap<>();
         claims.put("iss", "worryrecord");
