@@ -47,8 +47,8 @@ dependencies {
 
 
     // DB
-//    runtimeOnly 'mysql:mysql-connector-java'
-    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client:3.0.6'
+    runtimeOnly 'mysql:mysql-connector-java'
+//    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client:3.0.6'
 //    runtimeOnly 'com.h2database:h2'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
