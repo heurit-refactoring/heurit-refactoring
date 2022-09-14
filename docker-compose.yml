@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+  mariadb:
+    container_name: mariadb2
+    image: mariadb:latest
+    ports:
+      - "3306:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: testdb
+    restart: always
+    volumes:
+      - db_data:/var/lib/mysql
+
+  spring:
+    container_name: spring
+    #platform: linux/amd64
+    build:
+      # 경로 (현재 위치)
+      context: .
+      # context가 설정한 경로에 있는 Dockerfile을 build한다.
+      dockerfile: Dockerfile
+    environment:
+      MARIADB_ADDRESS: mariadb
+      MARIADB_USERNAME: root
+      MARIADB_PASSWORD: root
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      - mariadb
+volumes:
+  db_data:
