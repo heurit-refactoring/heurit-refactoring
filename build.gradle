@@ -5,56 +5,29 @@ plugins {
     id 'java'
 }
 
-group = 'com.sj'
+group = 'com.celebmine.webservice'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
 configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
+    developmentOnly
+    runtimeClasspath{
+        extendsFrom developmentOnly
     }
 }
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-
-    // jwt Header - HS256 설정을 위한 의존성
-    // implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-
-    //jwt
-    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
-    implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
-    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
-
     implementation 'org.springframework.boot:spring-boot-starter-web'
-
-    // lombok
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-
-//    implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
-
-    // json parsing
-    implementation 'com.google.code.gson:gson:2.9.0'
-
-    // spring-boot-devtools
-//    implementation group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.7.3'
+    implementation 'org.springframework.boot:spring-boot-starter-mustache'
+    implementation('org.mariadb.jdbc:mariadb-java-client')
+    implementation('org.springframework.boot:spring-boot-configuration-processor')
+    implementation 'org.projectlombok:lombok'
+    implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-
-
-
-    // DB
-    runtimeOnly 'mysql:mysql-connector-java'
-//    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client:3.0.6'
-//    runtimeOnly 'com.h2database:h2'
-
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
-
-tasks.named('test') {
-    useJUnitPlatform()
 }
