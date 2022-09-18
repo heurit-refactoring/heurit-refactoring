@@ -10,7 +10,7 @@ pipeline {
     stage('build') {
       steps {
         tool 'gradle'
-        sh './gradlew build'
+        sh './gradlew build -x test'
       }
     }
 
