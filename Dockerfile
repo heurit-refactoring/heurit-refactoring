@@ -16,4 +16,4 @@ FROM openjdk:11-jre-slim
 COPY --from=builder build/libs/*.jar heurit-refactoring-0.0.1-SNAPSHOT.jar
 VOLUME /tmp
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "--spring.profiles.active=dev", "/heurit-refactoring-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=dev", "/heurit-refactoring-0.0.1-SNAPSHOT.jar"]
