@@ -37,7 +37,7 @@ env:
   # 추후에 기입
   ECS_SERVICE: heurit-service                 # set this to your Amazon ECS service name
   ECS_CLUSTER: heurit                 # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: /task-definition.json # set this to the path to your Amazon ECS task definition
+  ECS_TASK_DEFINITION: task-definition.json # set this to the path to your Amazon ECS task definition
   CONTAINER_NAME: heurit           # set this to the name of the container in the
   # containerDefinitions section of your task definition
 
