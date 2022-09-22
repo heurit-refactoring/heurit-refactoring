@@ -3,9 +3,10 @@ spring:
   datasource:
     url: jdbc:mysql://ap-northeast.connect.psdb.cloud/local-test?sslMode=VERIFY_IDENTITY
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: 8cip3dmicivw3j8xigsw
-    password: pscale_pw_ehDfKrNdFGrzhp27B4IDK155qV4OIuZ5npNV2WeZVzd
-#    password: ${MARIADB_PASSWORD}
+#    username: 8cip3dmicivw3j8xigsw
+    username: ${DB_USER}
+#    password: pscale_pw_ehDfKrNdFGrzhp27B4IDK155qV4OIuZ5npNV2WeZVzd
+    password: ${DB_PASSWORD}
 
 # docker-compose yml
 #spring:
@@ -33,6 +34,8 @@ spring:
 #      naming:
 #        naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
 #        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 jwt:
   secret: thisissecretkey01294809180@@12120980@@12120980

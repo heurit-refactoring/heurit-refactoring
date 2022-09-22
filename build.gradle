@@ -44,6 +44,11 @@ dependencies {
 //    implementation group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.7.3'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
+    // springfox-swagger-ui
+    implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+    implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+
+
 
 
     // DB
